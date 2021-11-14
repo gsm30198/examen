@@ -1,0 +1,22 @@
+{% extends 'base2.html' %}
+{% block title %} Creando categoría {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>Agregue una categoría</h1>
+    <br/><br/>
+    
+
+    <div class="form-group">
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button class="btn btn-secondary">Añadir categoría</button>
+    {% else %}
+
+
+<h4>Tienes que ingresar con un perfil</h4> 
+{% endif %}
+{% endblock %}
+
+

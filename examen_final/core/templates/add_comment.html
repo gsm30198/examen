@@ -1,0 +1,23 @@
+{% extends 'base2.html' %}
+{% block title %} Creando comentario {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-body">
+              <h2>Haz un comentario</h2>
+              <small><h6>Procura que sea constructivo</h6></small>
+              <form method="post">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <button type="submit" class="btn btn-primary">Comentar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}

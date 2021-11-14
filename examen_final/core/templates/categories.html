@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+{% block title %} Categorías {% endblock %}
+
+{% block content %}
+
+
+
+{%  if category_posts %}
+<h1>{{ cats }}</h1>
+<ul>
+    
+    {% for post in category_posts %}
+
+    
+    <li><a href="{% url 'article-details' post.id %}">{{ post.title }}</a>
+        - {{ post.category }}   
+        - {{ post.author.first_name }}
+         {{ post.author.last_name }}
+        - {{post.post_date}} 
+    
+        {% if user.is_authenticated %}
+        {% if user.id == post.author.id  %}
+        <small><a href="{% url 'update_post' post.id %}">(Editar)</a></small> - 
+        <small><a href="{% url 'delete_post' post.id %}">(Eliminar)</a></small>
+        {% endif %}
+        {% endif %}
+        <br/>
+        {{ post.resumen|safe}}
+        </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+    <h2>Esta categoría no existe</h2>
+{% endif %}
+{% endblock %}
+
+

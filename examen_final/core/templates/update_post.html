@@ -1,0 +1,26 @@
+{% extends 'base2.html' %}
+{% block title %} Editando post {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author.id  %}
+    <h1>Edite su post</h1>
+    <br/><br/>
+    
+    <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p}}
+    {{ form.media}}
+    <button class="btn btn-secondary">Subir</button>
+    </div>
+{% else %}
+<h4>Tienes que ingresar con un perfil y lo sabes</h4> 
+{% endif %}
+{% else %}
+    <h4>Tienes que ingresar con un perfil</h4> 
+{% endif %}
+
+{% endblock %}
+
+

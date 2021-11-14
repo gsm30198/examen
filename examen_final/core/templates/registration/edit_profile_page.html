@@ -1,0 +1,39 @@
+{% extends 'base2.html' %}
+{% block title %} Editar Perfil {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+    
+    <br/><br/>
+    
+
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-body">
+              <h2>Editar perfil</h2>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <button type="submit" class="btn btn-primary">Cambialo</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% else %}
+
+
+<h4>Tienes que ingresar con un perfil</h4> 
+{% endif %}
+
+{% else %}
+
+<h4>No eres el usuario correcto para hacer esta edición</h4> 
+
+{% endif %}
+{% endblock %}
+
+
